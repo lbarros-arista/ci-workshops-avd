@@ -150,7 +150,12 @@ cvp_configlets:
     shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet5\n   description
     S1-LEAF4_Ethernet2\n   no shutdown\n   channel-group 4 mode active\n!\ninterface
     Ethernet6\n   description MLAG_PEER_s1-spine2_Ethernet6\n   no shutdown\n   channel-group
-    1 mode active\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
+    1 mode active\n!\ninterface Ethernet7\n   description P2P_LINK_TO_WANCORE_Ethernet2\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 10.0.0.29/31\n   ip
+    ospf network point-to-point\n   ip ospf area 0.0.0.0\n!\ninterface Ethernet8\n
+    \  description P2P_LINK_TO_WANCORE_Ethernet2\n   no shutdown\n   mtu 1500\n   no
+    switchport\n   ip address 10.0.0.33/31\n   ip ospf network point-to-point\n   ip
+    ospf area 0.0.0.0\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
     \  ip address 10.1.252.1/32\n   ip ospf area 0.0.0.0\n!\ninterface Management0\n
     \  description oob_management\n   no shutdown\n   ip address 192.168.0.10/24\n!\ninterface
     Vlan10\n   description Ten\n   no shutdown\n   ip address 10.10.10.2/24\n   ip
@@ -164,7 +169,8 @@ cvp_configlets:
     \  peer-address 10.1.253.1\n   peer-link Port-Channel1\n   reload-delay mlag 300\n
     \  reload-delay non-mlag 330\n!\nip route 0.0.0.0/0 192.168.0.1\n!\nrouter ospf
     100\n   router-id 10.1.252.1\n   passive-interface default\n   no passive-interface
-    Vlan4093\n   max-lsa 12000\n   redistribute connected\n!\nmanagement api http-commands\n
+    Vlan4093\n   no passive-interface Ethernet7\n   no passive-interface Ethernet8\n
+    \  max-lsa 12000\n   redistribute connected\n!\nmanagement api http-commands\n
     \  protocol https\n   no shutdown\n   !\n   vrf default\n      no shutdown\n!\nend\n"
   AVD_s1-spine2: "!RANCID-CONTENT-TYPE: arista\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
     -cvaddr=192.168.0.5:9910 -cvauth=token,/tmp/token -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
@@ -193,7 +199,12 @@ cvp_configlets:
     shutdown\n   channel-group 4 mode active\n!\ninterface Ethernet5\n   description
     S1-LEAF4_Ethernet3\n   no shutdown\n   channel-group 4 mode active\n!\ninterface
     Ethernet6\n   description MLAG_PEER_s1-spine1_Ethernet6\n   no shutdown\n   channel-group
-    1 mode active\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
+    1 mode active\n!\ninterface Ethernet7\n   description P2P_LINK_TO_WANCORE_Ethernet2\n
+    \  no shutdown\n   mtu 1500\n   no switchport\n   ip address 10.0.0.31/31\n   ip
+    ospf network point-to-point\n   ip ospf area 0.0.0.0\n!\ninterface Ethernet8\n
+    \  description P2P_LINK_TO_WANCORE_Ethernet2\n   no shutdown\n   mtu 1500\n   no
+    switchport\n   ip address 10.0.0.35/31\n   ip ospf network point-to-point\n   ip
+    ospf area 0.0.0.0\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
     \  ip address 10.1.252.2/32\n   ip ospf area 0.0.0.0\n!\ninterface Management0\n
     \  description oob_management\n   no shutdown\n   ip address 192.168.0.11/24\n!\ninterface
     Vlan10\n   description Ten\n   no shutdown\n   ip address 10.10.10.3/24\n   ip
@@ -207,7 +218,8 @@ cvp_configlets:
     \  peer-address 10.1.253.0\n   peer-link Port-Channel1\n   reload-delay mlag 300\n
     \  reload-delay non-mlag 330\n!\nip route 0.0.0.0/0 192.168.0.1\n!\nrouter ospf
     100\n   router-id 10.1.252.2\n   passive-interface default\n   no passive-interface
-    Vlan4093\n   max-lsa 12000\n   redistribute connected\n!\nmanagement api http-commands\n
+    Vlan4093\n   no passive-interface Ethernet7\n   no passive-interface Ethernet8\n
+    \  max-lsa 12000\n   redistribute connected\n!\nmanagement api http-commands\n
     \  protocol https\n   no shutdown\n   !\n   vrf default\n      no shutdown\n!\nend\n"
 cvp_topology:
   SITE1_FABRIC:
